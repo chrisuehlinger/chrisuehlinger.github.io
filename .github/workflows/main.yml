@@ -10,7 +10,9 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@source
+      - uses: actions/checkout@master
+        with:
+          ref: source
       - name: Build
         uses: TartanLlama/actions-eleventy@v1.1
       - name: Deploy
