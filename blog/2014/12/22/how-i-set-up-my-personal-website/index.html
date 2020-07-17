@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="utf-8">
+	<title>Chris Uehlinger </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
+  <link href="/css/base.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<div id="content" class="inner">
+<link href="/css/blog.css" rel="stylesheet">
+<article class="post">
+  <h1>How I set up my personal website, Part 1</h1>
+  <p>December 22nd 2014</p>
+  <p>This is part 1 in a series on setting up your personal space on the web:</p>
+<ul>
+<li>Part 1: Setting up a Github Project Page</li>
+<li><a href="/blog/2014/12/22/how-i-set-up-my-personal-website-part-2/">Part 2: Setting up an Octopress site for you blog and portfolio</a></li>
+</ul>
+<p>Setting up a personal space on the web is easily one of the best things I've done this year. If you're new to Web Design/Development and you want to know what the single best thing you can do is, I'm going to lay it all out for you right here.</p>
+<p>So before we get started, a few disclaimers:</p>
+<ol>
+<li>These are my suggestions. There's a lot of flexibility here. You can use different tools, different hosting, whatever.</li>
+<li>Some of this stuff may seem complicated or excessive. I'll try and cover the &quot;why&quot; of each step in an aside, in case you're curious. However, some of these tools have entire books dedicated to them, so I'll try and redirect you to a better source if you're still puzzled.</li>
+<li>I'm assuming some familiarity with these tools (especially Git). If something seems crazy, I'll link to more documentation, but I'm going to be moving at a bit of a brisk pace.</li>
+<li>None of these steps matter, as long as in the end you achieve the following:</li>
+</ol>
+<p><strong>You need to have a place on the web that you can call your own.</strong> Ideally, it should be:</p>
+<ul>
+<li>A place where, if an idea strikes you, you can <strong>immediately</strong> build it and share it.</li>
+<li>A place where, if someone wants to see real examples of your work, all your weekend projects and little experiments are on display.</li>
+<li>Hosted in such a way that it won't keel over if you get a couple thousand hits from Hacker News.</li>
+</ul>
+<p>I posit that the best way to do this is to get an octopress blog on github pages on a personal domain, and then develop all your projects with a <code>gh-pages</code> branch so you can share them easily. After about a year of having this easy publishing at your disposal, you'll suddenly realize that you now have an easily shareable online portfolio. Awesome.</p>
+<p>If you want to see the code for my personal website (which should include the file with this blog post) I've uploaded it <a href="https://github.com/chrisuehlinger/chrisuehlinger.github.io" target="_blank" rel="noopener">here</a>. This is the kind of thing you're going to end up with at the end of all this.</p>
+<h2 id="getting-your-environment-set-up">Getting your environment set up</h2>
+<p>For this first part, all you need is a terminal (I use the Mac OS X Terminal that comes with any Mac), and an install of git (which comes with every Mac).</p>
+<p>You should also have your text editor of choice. Any text editor will do, although I highly reccomend <a href="http://www.sublimetext.com/" target="_blank" rel="noopener">Sublime Text</a> and/or <a href="http://brackets.io/" target="_blank" rel="noopener">Brackets</a>.</p>
+<h2 id="let's-talk-about-github-pages">Let's talk about Github pages</h2>
+<p>So <a href="https://github.com/" target="_blank" rel="noopener">Github</a> is a great website that lets you upload your code to share with others. There are tons of great codebases on there, and you could spend days just poring over the code in some of the really great projects. However, what we're really interested in here is <a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>.</p>
+<p>Basically, Github will host your site for free. Yes. Free. The catch is that your site has to be static. It has to be a folder full of html, css, javascript and image files that the server can throw at someone if they ask for them by name. No database, no backend logic, just a folder full of files.</p>
+<p>There are huge advantages to having a site like this. Even if you don't use Github Pages, you can easily find cheap hosting for a static site. There's also the fact that static sites are really cheap and easy to serve, so your site can stand up to monstrous amounts of traffic. As of today, I've never heard of anyone's Github Pages site going down due to too many requests, and Github never comes after your credit card.</p>
+<p>And it gets better. With Github Pages you can easily make a page for any of your projects. If one of your Github repositories has a branch called <code>gh-pages</code>, and that branch has an <code>index.html</code> file, you can easily get to it at <code>{yourname}.github.io/{repository-name}</code>. These project pages are the best part of this whole thing, so let's get that squared away right now.</p>
+<h2 id="let's-publish-a-project">Let's publish a project</h2>
+<p>To start out, go to <a href="https://github.com" target="_blank" rel="noopener">Github</a> and make a new respository. Call it <code>HelloWeb</code>, decide whether you want a README file and a <code>.gitignore</code> file (you can start with one or make one later, it doesn't really matter) ...alright good. Now go into your Terminal, find a nice cozy part of your hard drive (I recommend making a <code>~/Development</code> directory to keep all your dev stuff in) and type the following command:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/<span class="token punctuation">{</span>yourname<span class="token punctuation">}</span>/HelloWeb</code></pre>
+<p>This will download the git repository and store it in a directory named <code>HelloWeb</code>. USe the command <code>cd HelloWeb</code> to go inside the repository. Now, you'll start off on the <code>master</code> branch, so you'll need to make a <code>gh-pages</code> branch where you'll be doing your coding.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> branch gh-pages<br><span class="token function">git</span> checkout gh-pages</code></pre>
+<p>So far so good, now fire up your text editor and make a file in <code>~/Development/HelloWeb</code> called <code>index.html</code>. You can keep it simple:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Hello Hello!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>Save that, head back to the Terminal, and add this file to your repository:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> index.html</code></pre>
+<p>Now make a commit to &quot;save&quot; what you've done:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> commit -am <span class="token string">"Added index.html"</span></code></pre>
+<p>Now push the <code>gh-pages</code> branch up to GitHub (they take care of setting up a lot of the remote stuff)</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> push origin gh-pages</code></pre>
+<p>Now go to <code>{yourname}.github.io/HelloWeb</code>. There's your page! (It may take a minute or so the first time)</p>
+<p>The hard part is done. You have an HTML file on your computer. You can put any HTML, CSS or Javascript in there, and it will show up, as you wrote it, to anyone, on any computer, anywhere in the world (if they visit your website).</p>
+<p>Feel that? That's what power feels like.</p>
+<p>Now let's try something else. Let's take someone else's project, make some changes to it, and upload it to our site.</p>
+<h2 id="make-your-own-2048">Make your own 2048</h2>
+<p>Let's say you really like the game <a href="http://gabrielecirulli.github.io/2048/" target="_blank" rel="noopener">2048</a>, and you want to make a spinoff that works a little differently. A lot of my projects start off like this-- I'll see something cool, imagine a different way it could work, make some changes, and then share it (giving credit to the person who had the idea of course).</p>
+<p>You may have noticed, 2048 is on a <code>github.io</code> domain. The guy who made it pushed it to the <code>gh-pages</code> branch of a repo named &quot;2048&quot;. This will be pretty easy. First, go to <a href="https://github.com/gabrielecirulli/2048" target="_blank" rel="noopener">https://github.com/gabrielecirulli/2048</a> and click the button in the upper right part of the screen labeled &quot;Fork&quot;.</p>
+<p>Once you've forked the repo (that is, you've made a personally copy of it that is now under your name) download it to your <code>~/Development/</code> directory:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/<span class="token punctuation">{</span>yourname<span class="token punctuation">}</span>/2048<br><span class="token builtin class-name">cd</span> <span class="token number">2048</span><br><span class="token function">git</span> checkout gh-pages</code></pre>
+<p>Ready to go? Alright, make a change to one of the files in there. Do anything. Make the background pink. <a href="http://css-tricks.com/almanac/properties/f/filter/" target="_blank" rel="noopener">Use CSS filters to make the numbers blurry.</a> Put your name on the page as an <code>&lt;h1&gt;</code>, anything. When you're done, do this:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token punctuation">{</span>any new files you made <span class="token keyword">if</span> you made any<span class="token punctuation">}</span><br><span class="token function">git</span> commit -am <span class="token string">"{write a description of your change}"</span><br><span class="token function">git</span> push origin gh-pages</code></pre>
+<p>Boom. It's up there. Now you can show anyone your &quot;Pink, blurry, personally branded 2048&quot;. If you go to <a href="http://chrisuehlinger.com/2048/" target="_blank" rel="noopener">http://chrisuehlinger.com/2048/</a> you'll see my version. I tried to write an AI that would beat the game. I did that because I was bored one afternoon, and now it's part of my portfolio, and I can bring it up on my iPhone in the middle of an interview.</p>
+<p>So now you've got an easy way to publish anything you do. But what would really help would be a centralized site with a blog, and a portfolio page, and other goodies. I'll cover that in my next post.</p>
+<h2 id="a-few-last-goodies">A few last goodies</h2>
+<p>You're going to want a way to run your site on your computer, so you don't need to push to Github every time you want to check if somethings working. I highly reccomend the Node.js module <code>http-server</code>. If you already have the Node package manager <code>npm</code>, type this to install the package:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g http-server</code></pre>
+<p>Then go to the directory where the HTML files are and type:</p>
+<pre class="language-bash"><code class="language-bash">http-server -p <span class="token number">1234</span></code></pre>
+<p>Your website should now appear at <code>http://localhost:1234</code>. Anytime you change something, just refresh the page and you'll see the change.</p>
+<p>I also HIGHLY reccomend the node app called <code>ungit</code>. It's a GUI that makes it much easier to use git. To install it, type:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g ungit</code></pre>
+<p>Go to the directory where your repository is and type:</p>
+<pre class="language-bash"><code class="language-bash">ungit</code></pre>
+<p>Now visiting <code>http://localhost:9000</code> will show you the app.</p>
+
+</article>
+</div>
+</body>
+</html>
